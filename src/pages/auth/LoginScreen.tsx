@@ -1,11 +1,65 @@
-import React from "react";
-import logo from "../../assets/images/logo/woo_woo_art_house_logo.png";
+import React, { useEffect, useState } from "react";
 import { Phone } from "lucide-react";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast, Toaster } from "react-hot-toast";
+import logo from "../../assets/images/logo/woo_woo_art_house_logo.png";
 import ButtonComponent from "../../components/ButtonComponent";
+import { handleLogin, handleRequestOtp } from "../../utils/apiClient";
+import { useNavigate } from "react-router-dom";
 
+const loginSchema = z.object({
+  mobileNumber: z
+    .string()
+    .min(10, "Mobile number must be 10 digits")
+    .max(10, "Mobile number must be 10 digits")
+    .regex(/^[0-9]+$/, "Only digits allowed"),
+});
 export default function LoginScreen() {
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const {
+    register: login,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: zodResolver(loginSchema),
+  });
+  useEffect(() => {
+    if (errors.mobileNumber) {
+      toast.error(errors.mobileNumber.message, { duration: 1500 });
+    }
+  }, [errors.mobileNumber]);
+
+  const onSubmit = async (data: any) => {
+    try {
+      setLoading(true);
+      const response = await handleLogin(data.mobileNumber);
+      await sendOtp(data.mobileNumber);
+    } catch (error: any) {
+      console.log("Login error:", error);
+      toast.error(error?.response?.data?.message || "Network Error", {
+        duration: 2000,
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const sendOtp = async (mobileNumber: string) => {
+    try {
+      const response = await handleRequestOtp("+91" + mobileNumber);
+      toast.success(response.message, { duration: 1000 });
+      navigate("/otp", { state: { mobileNumber } });
+    } catch (error) {
+      console.log("OTP send error:", error);
+    }
+  };
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+      <Toaster position="top-center" />
       <div className="w-full max-w-5xl bg-white shadow-sm rounded-2xl grid grid-cols-1 md:grid-cols-2 overflow-hidden p-12">
         {/* Left Image */}
         <div className="hidden md:flex items-center justify-center bg-white">
@@ -26,19 +80,28 @@ export default function LoginScreen() {
             Login to continue and explore your personalized dashboard.
           </p>
 
-          <div className="space-y-6">
+          <form className="space-y-6">
             {/* Mobile Number Input */}
-            <div className="flex items-center gap-3 border border-gray-300 rounded-xl px-4 py-4 bg-gray-50 focus-within:border-black transition">
+            <div
+              className={`flex items-center gap-3 border rounded-xl px-4 py-4 bg-gray-50 transition ${
+                errors.mobileNumber ? "border-red-500" : "border-gray-300"
+              }`}
+            >
               <Phone className="w-5 h-5 text-gray-500" />
               <input
                 type="tel"
                 placeholder="Enter Mobile Number"
                 className="w-full bg-transparent outline-none text-gray-800"
+                {...login("mobileNumber")}
               />
             </div>
 
             {/* Verify Button */}
-            <ButtonComponent title="Submit" />
+            <ButtonComponent
+              title="Submit"
+              onClick={handleSubmit(onSubmit)}
+              loading={loading}
+            />
 
             {/* Footer */}
             <p className="text-center text-gray-600 text-sm">
@@ -47,7 +110,7 @@ export default function LoginScreen() {
                 Sign Up
               </a>
             </p>
-          </div>
+          </form>
         </div>
       </div>
     </div>
