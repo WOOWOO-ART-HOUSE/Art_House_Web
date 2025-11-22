@@ -1,4 +1,5 @@
 import React from "react";
+import loaderImg from "../assets/images/svg/loader.svg";
 
 interface ButtonProps {
   title: string;
@@ -19,7 +20,7 @@ export default function ButtonComponent({
         loading ? "opacity-70 cursor-not-allowed" : ""
       }`}
     >
-      {loading ? "Submitting..." : title}
+      {loading ? <img src={loaderImg} className="h-7 w-7" /> : title}
     </button>
   );
 }

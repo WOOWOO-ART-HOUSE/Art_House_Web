@@ -4,7 +4,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NotfoundScreen from "./pages/common/NotfoundScreen";
 import LoginScreen from "./pages/auth/LoginScreen";
 import OtpScreen from "./pages/auth/OtpScreen";
-import { Toaster } from "react-hot-toast";
 import DashboardScreen from "./pages/main/dashboardScreen";
 export default function App() {
   const router = createBrowserRouter([
@@ -23,7 +22,6 @@ export default function App() {
   ]);
   return (
     <>
-      <Toaster position="top-center" reverseOrder={false} />
       <RouterProvider router={router} />
     </>
   );

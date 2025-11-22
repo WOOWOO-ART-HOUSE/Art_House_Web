@@ -3,12 +3,11 @@ import { Phone } from "lucide-react";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { toast, Toaster } from "react-hot-toast";
 import logo from "../../assets/images/logo/woo_woo_art_house_logo.png";
 import ButtonComponent from "../../components/ButtonComponent";
 import { handleLogin, handleRequestOtp } from "../../utils/apiClient";
 import { useNavigate } from "react-router-dom";
-
+import Swal from "sweetalert2";
 const loginSchema = z.object({
   mobileNumber: z
     .string()
@@ -28,7 +27,13 @@ export default function LoginScreen() {
   });
   useEffect(() => {
     if (errors.mobileNumber) {
-      toast.error(errors.mobileNumber.message, { duration: 1500 });
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: errors.mobileNumber.message,
+        confirmButtonText: "OK",
+        confirmButtonColor: "#000000",
+      });
     }
   }, [errors.mobileNumber]);
 
@@ -36,11 +41,16 @@ export default function LoginScreen() {
     try {
       setLoading(true);
       const response = await handleLogin(data.mobileNumber);
+
       await sendOtp(data.mobileNumber);
     } catch (error: any) {
       console.log("Login error:", error);
-      toast.error(error?.response?.data?.message || "Network Error", {
-        duration: 2000,
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.response.data.message,
+        confirmButtonText: "OK",
+        confirmButtonColor: "#000000",
       });
     } finally {
       setLoading(false);
@@ -50,7 +60,7 @@ export default function LoginScreen() {
   const sendOtp = async (mobileNumber: string) => {
     try {
       const response = await handleRequestOtp("+91" + mobileNumber);
-      toast.success(response.message, { duration: 1000 });
+
       navigate("/otp", { state: { mobileNumber } });
     } catch (error) {
       console.log("OTP send error:", error);
@@ -59,7 +69,6 @@ export default function LoginScreen() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-      <Toaster position="top-center" />
       <div className="w-full max-w-5xl bg-white shadow-sm rounded-2xl grid grid-cols-1 md:grid-cols-2 overflow-hidden p-12">
         {/* Left Image */}
         <div className="hidden md:flex items-center justify-center bg-white">

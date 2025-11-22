@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ButtonComponent from "../../components/ButtonComponent";
 import { useLocation, useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 import { handleVerifyOtp } from "../../utils/apiClient";
 import { useAuthStore } from "../../store/authStore";
 
@@ -14,31 +14,75 @@ export default function OtpScreen() {
   const navigate = useNavigate();
   // Handle OTP input change
   const handleChange = (value: string, index: number) => {
-    if (/^\d*$/.test(value)) {
-      const newOtp = [...otp];
-      newOtp[index] = value;
-      setOtp(newOtp);
+    if (!/^\d$/.test(value)) return; // allow only single digit
+    const next = [...otp];
+    next[index] = value;
+    setOtp(next);
+    if (index < otp.length - 1) {
+      (
+        document.getElementById(`otp-${index + 1}`) as HTMLInputElement | null
+      )?.focus();
+    }
+  };
 
-      if (value && index < 3) {
-        const next = document.getElementById(`otp-${index + 1}`);
-        next?.focus();
+  const handleKeyDown = (
+    e: React.KeyboardEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    if (e.key !== "Backspace") return;
+    const cur = otp[index];
+    if (cur === "") {
+      if (index > 0) {
+        const prevIndex = index - 1;
+        const next = [...otp];
+        next[prevIndex] = "";
+        setOtp(next);
+        (
+          document.getElementById(`otp-${prevIndex}`) as HTMLInputElement | null
+        )?.focus();
       }
+    } else {
+      const next = [...otp];
+      next[index] = "";
+      setOtp(next);
     }
   };
 
   const verifyOtp = async () => {
+    console.log("verifyOtp called"); // debug
     if (otp.some((digit) => digit === "")) {
-      toast.error("Please enter all 4 digits", { duration: 2000 });
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "All fields are required.",
+        confirmButtonText: "OK",
+        confirmButtonColor: "#000000",
+      });
       return;
     }
-
     try {
       setLoading(true);
       const response = await handleVerifyOtp(mobileNumber, otp.join(""));
       setUser(response.user, response.token);
-      navigate("/dashboard");
+      Swal.fire({
+        icon: "success",
+        title: "Success",
+        text: response.message,
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: true,
+      }).then(() => {
+        navigate("/dashboard");
+      });
     } catch (error: any) {
       console.log("OTP verification error:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: error.response.data.message,
+        confirmButtonText: "OK",
+        confirmButtonColor: "#000000",
+      });
     } finally {
       setLoading(false);
     }
@@ -60,14 +104,15 @@ export default function OtpScreen() {
 
           {/* BIGGER OTP INPUTS */}
           <div className="flex justify-between mb-8">
-            {otp.map((val, index) => (
+            {[0, 1, 2, 3].map((i) => (
               <input
-                key={index}
-                id={`otp-${index}`}
-                type="text"
+                key={i}
+                id={`otp-${i}`}
+                value={otp[i]}
+                onChange={(e) => handleChange(e.target.value.trim(), i)}
+                onKeyDown={(e) => handleKeyDown(e, i)}
                 maxLength={1}
-                value={val}
-                onChange={(e) => handleChange(e.target.value, index)}
+                inputMode="numeric"
                 className="w-16 h-16 md:w-20 md:h-20 border border-gray-300 rounded-2xl text-center text-2xl font-bold focus:border-black focus:outline-none"
               />
             ))}
