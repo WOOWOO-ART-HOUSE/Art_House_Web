@@ -1,17 +1,18 @@
 import React from "react";
-import loginImg from "../../assets/images/login.png";
+import logo from "../../assets/images/logo/woo_woo_art_house_logo.png";
 import { Phone } from "lucide-react";
+import ButtonComponent from "../../components/ButtonComponent";
 
 export default function LoginScreen() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
-      <div className="w-full max-w-5xl bg-white shadow-sm rounded-2xl grid grid-cols-1 md:grid-cols-2 overflow-hidden">
+      <div className="w-full max-w-5xl bg-white shadow-sm rounded-2xl grid grid-cols-1 md:grid-cols-2 overflow-hidden p-12">
         {/* Left Image */}
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center justify-center bg-white">
           <img
-            src={loginImg}
+            src={logo}
             alt="Login"
-            className="h-full w-full object-cover"
+            className="h-[80%] w-auto object-contain"
           />
         </div>
 
@@ -27,7 +28,7 @@ export default function LoginScreen() {
 
           <div className="space-y-6">
             {/* Mobile Number Input */}
-            <div className="flex items-center gap-3 border border-gray-300 rounded-xl px-4 py-4 bg-gray-50 focus-within:border-blue-600 transition">
+            <div className="flex items-center gap-3 border border-gray-300 rounded-xl px-4 py-4 bg-gray-50 focus-within:border-black transition">
               <Phone className="w-5 h-5 text-gray-500" />
               <input
                 type="tel"
@@ -37,14 +38,12 @@ export default function LoginScreen() {
             </div>
 
             {/* Verify Button */}
-            <button className="w-full bg-[#2b3e8e] hover:bg-[#0b1642] text-white py-4 px-1 rounded-xl text-base font-semibold transition">
-              Submit
-            </button>
+            <ButtonComponent title="Submit" />
 
             {/* Footer */}
             <p className="text-center text-gray-600 text-sm">
               Don’t have an account?{" "}
-              <a className="text-blue-700 font-semibold hover:underline">
+              <a className="text-black font-semibold hover:underline">
                 Sign Up
               </a>
             </p>

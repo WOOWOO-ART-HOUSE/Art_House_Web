@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import ButtonComponent from "../../components/ButtonComponent";
 
 export default function OtpScreen() {
   const [otp, setOtp] = useState(["", "", "", ""]);
@@ -45,10 +46,7 @@ export default function OtpScreen() {
             ))}
           </div>
 
-          {/* Button */}
-          <button className="w-full bg-[#2b3e8e] hover:bg-[#0b1642] text-white py-4 rounded-xl text-lg font-semibold">
-            Verify OTP
-          </button>
+          <ButtonComponent title="Verify OTP" />
 
           {/* Divider */}
           <div className="flex items-center my-8">
@@ -59,7 +57,7 @@ export default function OtpScreen() {
 
           <p className="text-center text-gray-600 text-sm">
             Don’t have an account?{" "}
-            <span className="font-medium underline cursor-pointer">
+            <span className="font-medium underline cursor-pointer text-black">
               Register Now
             </span>
           </p>
