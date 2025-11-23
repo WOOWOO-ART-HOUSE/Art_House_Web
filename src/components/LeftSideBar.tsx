@@ -15,7 +15,10 @@ import {
   FileSpreadsheet,
   BookAudio,
   BadgeIndianRupee,
+  Megaphone,
+  Handshake,
 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 export default function LeftSideBar() {
   const [collapsed, setCollapsed] = useState(false);
@@ -25,6 +28,7 @@ export default function LeftSideBar() {
     setOpenMenu(openMenu === menu ? "" : menu);
   };
 
+  const navigate = useNavigate();
   return (
     <div
       className={`h-screen bg-white transition-all duration-300 
@@ -33,7 +37,10 @@ export default function LeftSideBar() {
       {/* MENU LIST */}
       <div className="p-3 text-gray-700 text-sm mt-16">
         <div>
-          <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2">
+          <button
+            className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2 cursor-pointer"
+            onClick={() => navigate("/")}
+          >
             <LayoutDashboard size={22} />
             {!collapsed && (
               <span className="font-semibold text-[15px]">Home</span>
@@ -42,7 +49,7 @@ export default function LeftSideBar() {
         </div>
         <div className="mt-3">
           <button
-            className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2"
+            className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2 cursor-pointer"
             onClick={() => handleToggleMenu("sales")}
           >
             <Banknote size={22} />
@@ -59,20 +66,20 @@ export default function LeftSideBar() {
           </button>
 
           {openMenu === "sales" && !collapsed && (
-            <div className="ml-10 mt-1 space-y-2">
+            <div className="ml-10 mt-1 space-y-2 cursor-pointer">
               <p className="cursor-pointer hover:text-black">All</p>
               <p className="cursor-pointer hover:text-black">POS</p>
               <p className="cursor-pointer hover:text-black">Invoice</p>
               <p className="cursor-pointer hover:text-black">Membership</p>
               <p className="cursor-pointer hover:text-black">Payments</p>
               <p className="cursor-pointer hover:text-black">Quotations</p>
-              <p className="cursor-pointer hover:text-black">Creadit Note</p>
+              <p className="cursor-pointer hover:text-black">Credit Notes</p>
             </div>
           )}
         </div>
         <div className="mt-3">
           <button
-            className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2"
+            className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2 cursor-pointer"
             onClick={() => handleToggleMenu("purchases")}
           >
             <ShoppingCart size={22} />
@@ -89,17 +96,17 @@ export default function LeftSideBar() {
           </button>
 
           {openMenu === "purchases" && !collapsed && (
-            <div className="ml-10 mt-1 space-y-2">
+            <div className="ml-10 mt-1 space-y-2 cursor-pointer">
               <p className="cursor-pointer hover:text-black">Purchase</p>
               <p className="cursor-pointer hover:text-black">Purchase Order</p>
               <p className="cursor-pointer hover:text-black">Inventory</p>
-              <p className="cursor-pointer hover:text-black">Debit Note</p>
+              <p className="cursor-pointer hover:text-black">Debit Notes</p>
             </div>
           )}
         </div>
         <div className="mt-3">
           <button
-            className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2"
+            className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2 cursor-pointer"
             onClick={() => handleToggleMenu("catalogue")}
           >
             <BookOpenText size={22} />
@@ -116,16 +123,31 @@ export default function LeftSideBar() {
           </button>
 
           {openMenu === "catalogue" && !collapsed && (
-            <div className="ml-10 mt-1 space-y-2">
-              <p className="cursor-pointer hover:text-black">Products</p>
-              <p className="cursor-pointer hover:text-black">Services</p>
-              <p className="cursor-pointer hover:text-black">Membership</p>
+            <div className="ml-10 mt-1 space-y-2 cursor-pointer">
+              <p
+                className="cursor-pointer hover:text-black"
+                onClick={() => navigate("/products")}
+              >
+                Products
+              </p>
+              <p
+                className="cursor-pointer hover:text-black"
+                onClick={() => navigate("/services")}
+              >
+                Services
+              </p>
+              <p
+                className="cursor-pointer hover:text-black"
+                onClick={() => navigate("/membership")}
+              >
+                Membership
+              </p>
             </div>
           )}
         </div>
         <div className="mt-3">
           <button
-            className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2"
+            className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2 cursor-pointer"
             onClick={() => handleToggleMenu("network")}
           >
             <Network size={22} />
@@ -142,7 +164,7 @@ export default function LeftSideBar() {
           </button>
 
           {openMenu === "network" && !collapsed && (
-            <div className="ml-10 mt-1 space-y-2">
+            <div className="ml-10 mt-1 space-y-2 cursor-pointer">
               <p className="cursor-pointer hover:text-black">Vendors</p>
               <p className="cursor-pointer hover:text-black">Customers</p>
               <p className="cursor-pointer hover:text-black">Partners</p>
@@ -152,7 +174,7 @@ export default function LeftSideBar() {
         </div>
         <div className="mt-3">
           <button
-            className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2"
+            className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2 cursor-pointer"
             onClick={() => handleToggleMenu("communication")}
           >
             <BetweenHorizontalStart size={22} />
@@ -169,7 +191,7 @@ export default function LeftSideBar() {
           </button>
 
           {openMenu === "communication" && !collapsed && (
-            <div className="ml-10 mt-1 space-y-2">
+            <div className="ml-10 mt-1 space-y-2 cursor-pointer">
               <p className="cursor-pointer hover:text-black">Email</p>
               <p className="cursor-pointer hover:text-black">Whatsapp</p>
               <p className="cursor-pointer hover:text-black">Text</p>
@@ -179,10 +201,10 @@ export default function LeftSideBar() {
 
         <div className="mt-3">
           <button
-            className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2"
+            className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2 cursor-pointer"
             onClick={() => handleToggleMenu("marketing")}
           >
-            <BadgeIndianRupee size={22} />
+            <Megaphone size={22} />
             {!collapsed && (
               <span className="font-semibold text-[15px]">Marketing</span>
             )}
@@ -196,7 +218,7 @@ export default function LeftSideBar() {
           </button>
 
           {openMenu === "marketing" && !collapsed && (
-            <div className="ml-10 mt-1 space-y-2">
+            <div className="ml-10 mt-1 space-y-2 cursor-pointer">
               <p className="cursor-pointer hover:text-black">Coupon</p>
               <p className="cursor-pointer hover:text-black">Gift Cards</p>
               <p className="cursor-pointer hover:text-black">Rewards</p>
@@ -206,7 +228,7 @@ export default function LeftSideBar() {
         </div>
         <div className="mt-3">
           <button
-            className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2"
+            className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2 cursor-pointer"
             onClick={() => handleToggleMenu("reports")}
           >
             <FileSpreadsheet size={22} />
@@ -223,7 +245,7 @@ export default function LeftSideBar() {
           </button>
 
           {openMenu === "reports" && !collapsed && (
-            <div className="ml-10 mt-1 space-y-2">
+            <div className="ml-10 mt-1 space-y-2 cursor-pointer">
               <p className="cursor-pointer hover:text-black">Sales</p>
               <p className="cursor-pointer hover:text-black">Purchase</p>
               <p className="cursor-pointer hover:text-black">Visitors</p>
@@ -231,7 +253,7 @@ export default function LeftSideBar() {
           )}
         </div>
         <div className="mt-3">
-          <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2">
+          <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2 cursor-pointer">
             <BarChart3 size={22} />
             {!collapsed && (
               <span className="font-semibold text-[15px]">Analytics</span>
@@ -240,15 +262,15 @@ export default function LeftSideBar() {
         </div>
 
         <div className="mt-3">
-          <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2">
-            <Users size={22} />
+          <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2 cursor-pointer">
+            <Handshake size={22} />
             {!collapsed && (
               <span className="font-semibold text-[15px]">Programs</span>
             )}
           </button>
         </div>
         <div className="mt-3">
-          <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2">
+          <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2 cursor-pointer">
             <BookAudio size={22} />
             {!collapsed && (
               <span className="font-semibold text-[15px]">Accounting</span>
@@ -256,7 +278,7 @@ export default function LeftSideBar() {
           </button>
         </div>
         <div className="mt-3">
-          <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2">
+          <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2 cursor-pointer">
             <Wallet size={22} />
             {!collapsed && (
               <span className="font-semibold text-[15px]">Wallet</span>
@@ -265,7 +287,7 @@ export default function LeftSideBar() {
         </div>
         <div className="mt-3">
           <button
-            className="flex items-center gap-3  py-2 hover:bg-gray-100 rounded px-2"
+            className="flex items-center gap-3  py-2 hover:bg-gray-100 rounded px-2 cursor-pointer"
             onClick={() => setCollapsed(!collapsed)}
           >
             {collapsed ? (
