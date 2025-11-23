@@ -1,5 +1,13 @@
 import React from "react";
-import { Bell, User, Megaphone, Zap, ChevronDown, Search } from "lucide-react";
+import {
+  Bell,
+  User,
+  Megaphone,
+  Zap,
+  ChevronDown,
+  Search,
+  LocationEdit,
+} from "lucide-react";
 import logo from "../assets/images/logo/woo_woo_art_house_logo.png";
 
 export default function HeaderComponent() {
@@ -14,11 +22,11 @@ export default function HeaderComponent() {
 
         <div className="hidden md:flex flex-col leading-tight">
           <h1 className="font-semibold text-sm md:text-base">
-            YOUR BUSINESS NAME
+            YOUR STOTE LOCATION
           </h1>
           <button className="flex items-center gap-1 text-xs text-gray-500 hover:text-gray-700 transition">
-            <ChevronDown size={14} />
-            Change Company
+            <LocationEdit size={16} color="black" />
+            <span className="text-[14px]">BHILAI</span>
           </button>
         </div>
       </div>

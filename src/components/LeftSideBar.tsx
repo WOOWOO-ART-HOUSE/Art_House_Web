@@ -1,23 +1,20 @@
 import React, { useState } from "react";
 import {
-  ChevronLeft,
   ChevronDown,
   ShoppingCart,
-  FileText,
   Users,
-  UserPlus,
-  Settings,
-  Handshake,
   BarChart3,
-  FolderKanban,
-  Menu,
-  PlusCircle,
   Wallet,
-  Boxes,
-  Truck,
-  Receipt,
   ArrowRightFromLine,
   ArrowLeftFromLine,
+  LayoutDashboard,
+  Banknote,
+  BookOpenText,
+  Network,
+  BetweenHorizontalStart,
+  FileSpreadsheet,
+  BookAudio,
+  BadgeIndianRupee,
 } from "lucide-react";
 
 export default function LeftSideBar() {
@@ -34,14 +31,21 @@ export default function LeftSideBar() {
       ${collapsed ? "w-16" : "w-64"}`}
     >
       {/* MENU LIST */}
-      <div className="p-3 text-gray-700 text-sm mt-3">
-        {/* SALES ---------------------------------------------------- */}
+      <div className="p-3 text-gray-700 text-sm mt-16">
         <div>
+          <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2">
+            <LayoutDashboard size={22} />
+            {!collapsed && (
+              <span className="font-semibold text-[15px]">Home</span>
+            )}
+          </button>
+        </div>
+        <div className="mt-3">
           <button
             className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2"
             onClick={() => handleToggleMenu("sales")}
           >
-            <Wallet size={22} />
+            <Banknote size={22} />
             {!collapsed && (
               <span className="font-semibold text-[15px]">Sales</span>
             )}
@@ -56,15 +60,16 @@ export default function LeftSideBar() {
 
           {openMenu === "sales" && !collapsed && (
             <div className="ml-10 mt-1 space-y-2">
-              <p className="cursor-pointer hover:text-black">Invoices</p>
-              <p className="cursor-pointer hover:text-black">Credit Notes</p>
-              <p className="cursor-pointer hover:text-black">E-Invoices</p>
-              <p className="cursor-pointer hover:text-black">Subscriptions</p>
+              <p className="cursor-pointer hover:text-black">All</p>
+              <p className="cursor-pointer hover:text-black">POS</p>
+              <p className="cursor-pointer hover:text-black">Invoice</p>
+              <p className="cursor-pointer hover:text-black">Membership</p>
+              <p className="cursor-pointer hover:text-black">Payments</p>
+              <p className="cursor-pointer hover:text-black">Quotations</p>
+              <p className="cursor-pointer hover:text-black">Creadit Note</p>
             </div>
           )}
         </div>
-
-        {/* PURCHASES ------------------------------------------------ */}
         <div className="mt-3">
           <button
             className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2"
@@ -85,188 +90,176 @@ export default function LeftSideBar() {
 
           {openMenu === "purchases" && !collapsed && (
             <div className="ml-10 mt-1 space-y-2">
-              <p className="cursor-pointer hover:text-black">Purchase List</p>
-              <p className="cursor-pointer hover:text-black">Return Items</p>
+              <p className="cursor-pointer hover:text-black">Purchase</p>
+              <p className="cursor-pointer hover:text-black">Purchase Order</p>
+              <p className="cursor-pointer hover:text-black">Inventory</p>
+              <p className="cursor-pointer hover:text-black">Debit Note</p>
             </div>
           )}
         </div>
-
-        {/* PRODUCTS & SERVICES -------------------------------------- */}
-        <div className="mt-3">
-          <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2">
-            <Boxes size={22} />
-            {!collapsed && (
-              <span className="font-semibold text-[15px]">
-                Products & Services
-              </span>
-            )}
-          </button>
-        </div>
-
-        {/* INVENTORY ------------------------------------------------ */}
         <div className="mt-3">
           <button
             className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2"
-            onClick={() => handleToggleMenu("inventory")}
+            onClick={() => handleToggleMenu("catalogue")}
           >
-            <FolderKanban size={22} />
+            <BookOpenText size={22} />
             {!collapsed && (
-              <span className="font-semibold text-[15px]">Inventory</span>
+              <span className="font-semibold text-[15px]">Catalogue</span>
             )}
             {!collapsed && (
               <ChevronDown
                 className={`ml-auto transition-transform ${
-                  openMenu === "inventory" ? "rotate-180" : ""
+                  openMenu === "catalogue" ? "rotate-180" : ""
                 }`}
               />
             )}
           </button>
 
-          {openMenu === "inventory" && !collapsed && (
+          {openMenu === "catalogue" && !collapsed && (
             <div className="ml-10 mt-1 space-y-2">
-              <p className="cursor-pointer hover:text-black">Stock Summary</p>
-              <p className="cursor-pointer hover:text-black">Warehouse</p>
+              <p className="cursor-pointer hover:text-black">Products</p>
+              <p className="cursor-pointer hover:text-black">Services</p>
+              <p className="cursor-pointer hover:text-black">Membership</p>
             </div>
           )}
         </div>
-
-        {/* PAYMENTS ------------------------------------------------- */}
         <div className="mt-3">
           <button
             className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2"
-            onClick={() => handleToggleMenu("payments")}
+            onClick={() => handleToggleMenu("network")}
           >
-            <Receipt size={22} />
+            <Network size={22} />
             {!collapsed && (
-              <span className="font-semibold text-[15px]">Payments</span>
+              <span className="font-semibold text-[15px]">Network</span>
             )}
             {!collapsed && (
               <ChevronDown
                 className={`ml-auto transition-transform ${
-                  openMenu === "payments" ? "rotate-180" : ""
+                  openMenu === "network" ? "rotate-180" : ""
                 }`}
               />
             )}
           </button>
 
-          {openMenu === "payments" && !collapsed && (
+          {openMenu === "network" && !collapsed && (
             <div className="ml-10 mt-1 space-y-2">
-              <p className="cursor-pointer hover:text-black">Received</p>
-              <p className="cursor-pointer hover:text-black">Sent</p>
+              <p className="cursor-pointer hover:text-black">Vendors</p>
+              <p className="cursor-pointer hover:text-black">Customers</p>
+              <p className="cursor-pointer hover:text-black">Partners</p>
+              <p className="cursor-pointer hover:text-black">Geust</p>
+            </div>
+          )}
+        </div>
+        <div className="mt-3">
+          <button
+            className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2"
+            onClick={() => handleToggleMenu("communication")}
+          >
+            <BetweenHorizontalStart size={22} />
+            {!collapsed && (
+              <span className="font-semibold text-[15px]">Communication</span>
+            )}
+            {!collapsed && (
+              <ChevronDown
+                className={`ml-auto transition-transform ${
+                  openMenu === "communication" ? "rotate-180" : ""
+                }`}
+              />
+            )}
+          </button>
+
+          {openMenu === "communication" && !collapsed && (
+            <div className="ml-10 mt-1 space-y-2">
+              <p className="cursor-pointer hover:text-black">Email</p>
+              <p className="cursor-pointer hover:text-black">Whatsapp</p>
+              <p className="cursor-pointer hover:text-black">Text</p>
             </div>
           )}
         </div>
 
-        {/* CUSTOMERS */}
         <div className="mt-3">
-          <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2">
-            <Users size={22} />
+          <button
+            className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2"
+            onClick={() => handleToggleMenu("marketing")}
+          >
+            <BadgeIndianRupee size={22} />
             {!collapsed && (
-              <span className="font-semibold text-[15px]">Customers</span>
+              <span className="font-semibold text-[15px]">Marketing</span>
+            )}
+            {!collapsed && (
+              <ChevronDown
+                className={`ml-auto transition-transform ${
+                  openMenu === "marketing" ? "rotate-180" : ""
+                }`}
+              />
             )}
           </button>
-        </div>
-        <div className="mt-3">
-          <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2">
-            <Users size={22} />
-            {!collapsed && (
-              <span className="font-semibold text-[15px]">Customers</span>
-            )}
-          </button>
-        </div>
-        <div className="mt-3">
-          <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2">
-            <Users size={22} />
-            {!collapsed && (
-              <span className="font-semibold text-[15px]">Customers</span>
-            )}
-          </button>
-        </div>
-        <div className="mt-3">
-          <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2">
-            <Users size={22} />
-            {!collapsed && (
-              <span className="font-semibold text-[15px]">Customers</span>
-            )}
-          </button>
-        </div>
-        <div className="mt-3">
-          <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2">
-            <Users size={22} />
-            {!collapsed && (
-              <span className="font-semibold text-[15px]">Customers</span>
-            )}
-          </button>
-        </div>
-        <div className="mt-3">
-          <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2">
-            <Users size={22} />
-            {!collapsed && (
-              <span className="font-semibold text-[15px]">Customers</span>
-            )}
-          </button>
-        </div>
-        <div className="mt-3">
-          <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2">
-            <Users size={22} />
-            {!collapsed && (
-              <span className="font-semibold text-[15px]">Customers</span>
-            )}
-          </button>
-        </div>
-        <div className="mt-3">
-          <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2">
-            <Users size={22} />
-            {!collapsed && (
-              <span className="font-semibold text-[15px]">Customers</span>
-            )}
-          </button>
-        </div>
-        <div className="mt-3">
-          <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2">
-            <Users size={22} />
-            {!collapsed && (
-              <span className="font-semibold text-[15px]">Customers</span>
-            )}
-          </button>
-        </div>
 
-        {/* VENDORS */}
+          {openMenu === "marketing" && !collapsed && (
+            <div className="ml-10 mt-1 space-y-2">
+              <p className="cursor-pointer hover:text-black">Coupon</p>
+              <p className="cursor-pointer hover:text-black">Gift Cards</p>
+              <p className="cursor-pointer hover:text-black">Rewards</p>
+              <p className="cursor-pointer hover:text-black">Post</p>
+            </div>
+          )}
+        </div>
         <div className="mt-3">
-          <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2">
-            <UserPlus size={22} />
+          <button
+            className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2"
+            onClick={() => handleToggleMenu("reports")}
+          >
+            <FileSpreadsheet size={22} />
             {!collapsed && (
-              <span className="font-semibold text-[15px]">Vendors</span>
+              <span className="font-semibold text-[15px]">Reports</span>
+            )}
+            {!collapsed && (
+              <ChevronDown
+                className={`ml-auto transition-transform ${
+                  openMenu === "reports" ? "rotate-180" : ""
+                }`}
+              />
             )}
           </button>
-        </div>
 
-        {/* INSIGHTS */}
+          {openMenu === "reports" && !collapsed && (
+            <div className="ml-10 mt-1 space-y-2">
+              <p className="cursor-pointer hover:text-black">Sales</p>
+              <p className="cursor-pointer hover:text-black">Purchase</p>
+              <p className="cursor-pointer hover:text-black">Visitors</p>
+            </div>
+          )}
+        </div>
         <div className="mt-3">
           <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2">
             <BarChart3 size={22} />
             {!collapsed && (
-              <span className="font-semibold text-[15px]">Insights</span>
+              <span className="font-semibold text-[15px]">Analytics</span>
             )}
           </button>
         </div>
 
-        {/* SETTINGS */}
         <div className="mt-3">
           <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2">
-            <Settings size={22} />
+            <Users size={22} />
             {!collapsed && (
-              <span className="font-semibold text-[15px]">Settings</span>
+              <span className="font-semibold text-[15px]">Programs</span>
             )}
           </button>
         </div>
-
-        {/* REFER */}
         <div className="mt-3">
           <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2">
-            <Handshake size={22} />
+            <BookAudio size={22} />
             {!collapsed && (
-              <span className="font-semibold text-[15px]">Refer a Friend</span>
+              <span className="font-semibold text-[15px]">Accounting</span>
+            )}
+          </button>
+        </div>
+        <div className="mt-3">
+          <button className="flex items-center gap-3 w-full py-2 hover:bg-gray-100 rounded px-2">
+            <Wallet size={22} />
+            {!collapsed && (
+              <span className="font-semibold text-[15px]">Wallet</span>
             )}
           </button>
         </div>
