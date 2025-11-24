@@ -15,6 +15,9 @@ import HomeScreen from "./pages/main/home/HomeScreen";
 import ProductScreen from "./pages/main/catalogue/ProductScreen";
 import ServiceScreen from "./pages/main/catalogue/ServiceScreen";
 import MembershipScreen from "./pages/main/catalogue/MembershipScreen";
+import CreateNewProductScreen from "./pages/main/catalogue/CreateNewProductScreen";
+import CreateNewServiceScreen from "./pages/main/catalogue/CreateNewServiceScreen";
+import CreateNewMembershipScreen from "./pages/main/catalogue/CreateNewMembershipScreen";
 export default function App() {
   const token = useAuthStore((state) => state.token);
   const user = useAuthStore((state) => state.user);
@@ -40,9 +43,15 @@ export default function App() {
       element: <AuthRoute />,
       children: [
         { index: true, element: <HomeScreen /> },
-        { path: "products", element: <ProductScreen /> },
-        { path: "services", element: <ServiceScreen /> },
-        { path: "membership", element: <MembershipScreen /> },
+        { path: "/products", element: <ProductScreen /> },
+        { path: "/services", element: <ServiceScreen /> },
+        { path: "/membership", element: <MembershipScreen /> },
+        { path: "/create-new-product", element: <CreateNewProductScreen /> },
+        { path: "/create-new-service", element: <CreateNewServiceScreen /> },
+        {
+          path: "/create-new-membership",
+          element: <CreateNewMembershipScreen />,
+        },
       ],
     },
     {
