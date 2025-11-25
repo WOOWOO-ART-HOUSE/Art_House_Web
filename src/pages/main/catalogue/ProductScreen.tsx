@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import {
   MaterialReactTable,
   useMaterialReactTable,
@@ -13,8 +13,10 @@ import {
   SquarePen,
   Trash2,
 } from "lucide-react";
+import CategoryListModal from "../../../components/modal/CategoryListModal";
 
 export default function ProductScreen() {
+  const [openCategoryListModal, setOpenCategoryListModal] = useState(false);
   const columns = useMemo(
     () => [
       { accessorKey: "id", header: "ID" },
@@ -131,12 +133,26 @@ export default function ProductScreen() {
     <div className="p-1">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-xl font-semibold ">Products List</h1>
-        <Link
-          className="w-[130px] bg-black text-white py-2 px-1 rounded  text-[14px] font-semibold transition text-center border-radius-[50px]"
-          to="/create-new-product"
-        >
-          Create Product
-        </Link>
+        <div className="flex gap-3">
+          {" "}
+          <div
+            className="w-[120px] bg-black text-white py-2 px-1 rounded  text-[14px] font-semibold transition text-center border-radius-[50px]"
+            onClick={() => setOpenCategoryListModal(true)}
+          >
+            Category
+          </div>
+          {openCategoryListModal && (
+            <CategoryListModal
+              onClose={() => setOpenCategoryListModal(false)}
+            />
+          )}
+          <Link
+            className="w-[130px] bg-black text-white py-2 px-1 rounded  text-[14px] font-semibold transition text-center border-radius-[50px]"
+            to="/create-new-product"
+          >
+            Create Product
+          </Link>
+        </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-3">
         {cards.map((item, index) => (

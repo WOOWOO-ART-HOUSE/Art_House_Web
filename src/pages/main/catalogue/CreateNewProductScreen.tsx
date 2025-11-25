@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import { ImagePlus, Trash2 } from "lucide-react";
+import { CirclePlus, ImagePlus, Trash2 } from "lucide-react";
+import CreateCategoryModal from "../../../components/modal/CreateCategoryModal";
 
 export default function CreateNewProductScreen() {
   const [imagesPreview, setImagesPreview] = useState<string[]>([]);
+
+  const [createCategoryModal, setCreateCategoryModal] = useState(false);
 
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
@@ -54,12 +57,20 @@ export default function CreateNewProductScreen() {
             <label className="block font-medium text-gray-700 mb-1">
               Primary Unit <span className="text-red-500">*</span>
             </label>
-            <input
-              type="text"
+            <select
               className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 
-              focus:ring-black outline-none transition"
-              placeholder="Piece, KG, Box..."
-            />
+              focus:ring-black outline-none"
+            >
+              <option>Select Unit</option>
+              <option value="withTax">Others</option>
+              <option value="withoutTax">Pieces</option>
+              <option value="withoutTax">Number</option>
+              <option value="withoutTax">Kilograms</option>
+              <option value="withoutTax">Units</option>
+              <option value="withoutTax">Box</option>
+              <option value="withoutTax">Packs</option>
+              <option value="withoutTax">Each</option>
+            </select>
           </div>
         </div>
 
@@ -128,33 +139,82 @@ export default function CreateNewProductScreen() {
 
           {/* Category */}
           <div>
-            <label className="block font-medium text-gray-700 mb-1">
-              Category
-            </label>
-            <input
-              type="text"
+            <div className="flex items-center gap-2  mb-1">
+              <label className="block font-medium text-gray-700">
+                {" "}
+                Category
+              </label>
+              <CirclePlus
+                size={21}
+                className="cursor-pointer"
+                onClick={() => {
+                  setCreateCategoryModal(true);
+                }}
+              />
+
+              {createCategoryModal && (
+                <CreateCategoryModal
+                  onClose={() => setCreateCategoryModal(false)}
+                />
+              )}
+            </div>
+
+            <select
               className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 
               focus:ring-black outline-none"
-              placeholder="Electronics, Fashion..."
-            />
+            >
+              <option>Select Category</option>
+              <option value="painting">Painting</option>
+              <option value="sketching">Sketching</option>
+              <option value="drawing">Drawing</option>
+              <option value="digitalArt">Digital Art</option>
+              <option value="calligraphy">Calligraphy</option>
+              <option value="sculpture">Sculpture</option>
+              <option value="craft">Handmade Craft</option>
+              <option value="pottery">Pottery / Clay Art</option>
+              <option value="mixedMedia">Mixed Media</option>
+              <option value="photography">Photography</option>
+            </select>
           </div>
 
           {/* Dummy Test Field */}
           <div>
-            <label className="block font-medium text-gray-700 mb-1">Test</label>
-            <input
-              type="text"
+            <label className="block font-medium text-gray-700 mb-1">
+              Variant
+            </label>
+            <select
               className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 
-              focus:ring-black outline-none"
-              placeholder="Type here..."
+    focus:ring-black outline-none"
+            >
+              <option>Select Variant</option>
+              <option value="size">Size</option>
+              <option value="color">Color</option>
+              <option value="material">Material</option>
+              <option value="medium">Art Medium</option>
+              <option value="frame">Frame Type</option>
+              <option value="edition">Art Edition</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-1 gap-6">
+          <div>
+            <label className="block font-medium text-gray-700 mb-1">
+              Description
+            </label>
+
+            <textarea
+              className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 
+      focus:ring-black outline-none"
+              rows={3}
             />
           </div>
         </div>
 
         {/* Image Upload Section */}
-        <h2 className="text-[18px] font-semibold text-gray-800  mb-3">
+        <label className="block font-medium text-gray-700 mb-1 mt-3">
           Product Images
-        </h2>
+        </label>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Upload Box */}
@@ -225,12 +285,20 @@ export default function CreateNewProductScreen() {
 
         {/* Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 mt-10">
-          <button className="flex-1 bg-black text-white py-3.5 rounded-xl font-semibold cursor-pointer">
-            Save Product
-          </button>
+          {/* Left 40% */}
+          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-[50%]">
+            <button className="flex-1 bg-white text-black py-3.5 rounded-xl font-semibold border border-gray-300 hover:bg-gray-100 transition cursor-pointer">
+              Cancel
+            </button>
 
-          <button className="flex-1 bg-white text-black py-3.5 rounded-xl font-semibold border border-gray-300 cursor-pointer">
-            Reset Form
+            <button className="flex-1 bg-white text-black py-3.5 rounded-xl font-semibold border border-gray-300 hover:bg-gray-100 transition cursor-pointer">
+              Save as Draft
+            </button>
+          </div>
+
+          {/* Right 60% */}
+          <button className="w-full sm:w-[50%] bg-black text-white py-3.5 rounded-xl font-semibold hover:bg-gray-900 transition cursor-pointer">
+            Submit
           </button>
         </div>
       </div>

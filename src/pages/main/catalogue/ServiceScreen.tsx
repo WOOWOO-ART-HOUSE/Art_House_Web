@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import {
   MaterialReactTable,
   useMaterialReactTable,
@@ -13,7 +13,9 @@ import {
   SquarePen,
   Trash2,
 } from "lucide-react";
+import CategoryListModal from "../../../components/modal/CategoryListModal";
 export default function ServiceScreen() {
+  const [openCategoryListModal, setOpenCategoryListModal] = useState(false);
   const columns = useMemo(
     () => [
       { accessorKey: "id", header: "ID" },
@@ -104,23 +106,23 @@ export default function ServiceScreen() {
       icon: <ShoppingBasket size={22} className="text-gray-500" />,
     },
     {
-      title: "New Serivces",
+      title: "Active Services",
       value: "50",
       icon: <Boxes size={22} className="text-gray-500" />,
     },
     {
-      title: "Old Services",
+      title: "Service Categories",
       value: "5",
       icon: <LayoutList size={22} className="text-gray-500" />,
     },
 
     {
-      title: "New Services In",
+      title: "Pending Requests",
       value: 50,
       icon: <ArrowDownCircle size={22} className="text-gray-500" />,
     },
     {
-      title: "New Services Out",
+      title: "Completed Services",
       value: 50,
       icon: <ArrowUpCircle size={22} className="text-gray-500" />,
     },
@@ -130,12 +132,25 @@ export default function ServiceScreen() {
     <div className="p-1">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-xl font-semibold ">Services List</h1>
-        <Link
-          className="w-[130px] bg-black text-white py-2 px-1 rounded  text-[14px] font-semibold transition text-center border-radius-[50px]"
-          to="/create-new-service"
-        >
-          Create Service
-        </Link>
+        <div className="flex gap-3">
+          <div
+            className="w-[120px] bg-black text-white py-2 px-1 rounded  text-[14px] font-semibold transition text-center border-radius-[50px]"
+            onClick={() => setOpenCategoryListModal(true)}
+          >
+            Category
+          </div>
+          {openCategoryListModal && (
+            <CategoryListModal
+              onClose={() => setOpenCategoryListModal(false)}
+            />
+          )}
+          <Link
+            className="w-[130px] bg-black text-white py-2 px-1 rounded  text-[14px] font-semibold transition text-center border-radius-[50px]"
+            to="/create-new-service"
+          >
+            Create Service
+          </Link>
+        </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 mb-3">
         {cards.map((item, index) => (

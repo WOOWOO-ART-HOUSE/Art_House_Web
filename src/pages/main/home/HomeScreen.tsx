@@ -31,7 +31,7 @@ export default function HomeScreen() {
 
       {/* Networking Details */}
       <RevenueCard
-        title="Networking"
+        title="Network"
         amount="₹40,000.00"
         date="Nov 01 – Nov 30"
         stats={{

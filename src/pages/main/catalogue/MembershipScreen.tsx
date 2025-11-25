@@ -99,28 +99,28 @@ export default function MembershipScreen() {
 
   const cards = [
     {
-      title: "Total Membership",
+      title: "Total Members",
       value: 100,
       icon: <ShoppingBasket size={22} className="text-gray-500" />,
     },
     {
-      title: "New Membership",
+      title: "Active Members",
       value: "50",
       icon: <Boxes size={22} className="text-gray-500" />,
     },
     {
-      title: "Old Membership",
+      title: "New Members",
       value: "5",
       icon: <LayoutList size={22} className="text-gray-500" />,
     },
 
     {
-      title: "New Membership In",
+      title: "Old Members",
       value: 50,
       icon: <ArrowDownCircle size={22} className="text-gray-500" />,
     },
     {
-      title: "New Membership Out",
+      title: "Pending Renewals",
       value: 50,
       icon: <ArrowUpCircle size={22} className="text-gray-500" />,
     },
