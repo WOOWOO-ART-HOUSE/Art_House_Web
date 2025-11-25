@@ -22,7 +22,7 @@ export default function HeaderComponent() {
 
         <div className="hidden md:flex flex-col leading-tight">
           <h1 className="font-semibold text-sm md:text-base">
-            YOUR STOTE LOCATION
+            YOUR STORE LOCATION
           </h1>
           <button className="flex items-center gap-1 text-xs text-gray-500 hover:text-gray-700 transition">
             <LocationEdit size={16} color="black" />

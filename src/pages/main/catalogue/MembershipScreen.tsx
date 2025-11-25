@@ -131,7 +131,7 @@ export default function MembershipScreen() {
         <h1 className="text-xl font-semibold ">Membership List</h1>
         <Link
           className="w-[165px] bg-black text-white py-2 px-3 rounded  text-[14px] font-semibold transition text-center border-radius-[50px]"
-          to="/create-new-service"
+          to="/create-new-membership"
         >
           Create Membership
         </Link>

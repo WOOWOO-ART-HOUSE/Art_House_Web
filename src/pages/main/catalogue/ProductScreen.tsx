@@ -134,9 +134,8 @@ export default function ProductScreen() {
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-xl font-semibold ">Products List</h1>
         <div className="flex gap-3">
-          {" "}
           <div
-            className="w-[120px] bg-black text-white py-2 px-1 rounded  text-[14px] font-semibold transition text-center border-radius-[50px]"
+            className="w-[120px] bg-black text-white py-2 px-1 rounded  text-[14px] font-semibold transition text-center border-radius-[50px] cursor-pointer"
             onClick={() => setOpenCategoryListModal(true)}
           >
             Category
