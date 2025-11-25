@@ -16,7 +16,7 @@ export default function CreateNewMembershipScreen() {
         <h2 className="text-xl font-semibold text-gray-800 mb-5">
           Create New Plan
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 ">
           <div>
             <div>
               <label className="block font-medium text-gray-700 mb-1">
@@ -75,7 +75,7 @@ export default function CreateNewMembershipScreen() {
         <h2 className="text-[18px] font-semibold text-gray-800 mt-4 mb-1">
           Tell customers what the main features are (optional)
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {/* LEFT SIDE */}
           <section>
             <label className="block font-medium text-gray-700 mb-2">
@@ -114,7 +114,7 @@ export default function CreateNewMembershipScreen() {
               {/* Recurring */}
               <label
                 className="flex items-center gap-3 p-4 rounded-lg cursor-pointer 
-        border border-gray-300 hover:border-black transition"
+        border border-gray-300 hover:border-black transition w-full"
               >
                 <input
                   type="radio"
