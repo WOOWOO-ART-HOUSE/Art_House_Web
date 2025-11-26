@@ -165,10 +165,30 @@ export default function LeftSideBar() {
 
           {openMenu === "network" && !collapsed && (
             <div className="ml-10 mt-1 space-y-2 cursor-pointer">
-              <p className="cursor-pointer hover:text-black">Vendors</p>
-              <p className="cursor-pointer hover:text-black">Customers</p>
-              <p className="cursor-pointer hover:text-black">Partners</p>
-              <p className="cursor-pointer hover:text-black">Geust</p>
+              <p
+                className="cursor-pointer hover:text-black"
+                onClick={() => navigate("/vendors")}
+              >
+                Vendors
+              </p>
+              <p
+                className="cursor-pointer hover:text-black"
+                onClick={() => navigate("/customers")}
+              >
+                Customers
+              </p>
+              <p
+                className="cursor-pointer hover:text-black"
+                onClick={() => navigate("/partners")}
+              >
+                Partners
+              </p>
+              <p
+                className="cursor-pointer hover:text-black"
+                onClick={() => navigate("/guests")}
+              >
+                Guests
+              </p>
             </div>
           )}
         </div>

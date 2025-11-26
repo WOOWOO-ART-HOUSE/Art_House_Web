@@ -18,6 +18,10 @@ import MembershipScreen from "./pages/main/catalogue/MembershipScreen";
 import CreateNewProductScreen from "./pages/main/catalogue/CreateNewProductScreen";
 import CreateNewServiceScreen from "./pages/main/catalogue/CreateNewServiceScreen";
 import CreateNewMembershipScreen from "./pages/main/catalogue/CreateNewMembershipScreen";
+import VendorScreen from "./pages/main/network/VendorScreen";
+import CustomerScreen from "./pages/main/network/CustomerScreen";
+import PartnerScreen from "./pages/main/network/PartnerScreen";
+import GuestScreen from "./pages/main/network/GuestScreen";
 export default function App() {
   const token = useAuthStore((state) => state.token);
   const user = useAuthStore((state) => state.user);
@@ -43,6 +47,7 @@ export default function App() {
       element: <AuthRoute />,
       children: [
         { index: true, element: <HomeScreen /> },
+        // Catalogue
         { path: "/products", element: <ProductScreen /> },
         { path: "/services", element: <ServiceScreen /> },
         { path: "/membership", element: <MembershipScreen /> },
@@ -51,6 +56,23 @@ export default function App() {
         {
           path: "/create-new-membership",
           element: <CreateNewMembershipScreen />,
+        },
+        // Network
+        {
+          path: "/vendors",
+          element: <VendorScreen />,
+        },
+        {
+          path: "/customers",
+          element: <CustomerScreen />,
+        },
+        {
+          path: "/partners",
+          element: <PartnerScreen />,
+        },
+        {
+          path: "/guests",
+          element: <GuestScreen />,
         },
       ],
     },
