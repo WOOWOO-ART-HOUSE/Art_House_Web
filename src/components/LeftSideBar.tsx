@@ -97,10 +97,30 @@ export default function LeftSideBar() {
 
           {openMenu === "purchases" && !collapsed && (
             <div className="ml-10 mt-1 space-y-2 cursor-pointer">
-              <p className="cursor-pointer hover:text-black">Purchase</p>
-              <p className="cursor-pointer hover:text-black">Purchase Order</p>
-              <p className="cursor-pointer hover:text-black">Inventory</p>
-              <p className="cursor-pointer hover:text-black">Debit Notes</p>
+              <p
+                className="cursor-pointer hover:text-black"
+                onClick={() => navigate("/purchase-products")}
+              >
+                Purchase
+              </p>
+              <p
+                className="cursor-pointer hover:text-black"
+                onClick={() => navigate("/purchase-orders")}
+              >
+                Purchase Order
+              </p>
+              <p
+                className="cursor-pointer hover:text-black"
+                onClick={() => navigate("/inventory")}
+              >
+                Inventory
+              </p>
+              <p
+                className="cursor-pointer hover:text-black"
+                onClick={() => navigate("/debit-notes")}
+              >
+                Debit Notes
+              </p>
             </div>
           )}
         </div>

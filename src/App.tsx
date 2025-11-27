@@ -22,13 +22,16 @@ import VendorScreen from "./pages/main/network/VendorScreen";
 import CustomerScreen from "./pages/main/network/CustomerScreen";
 import PartnerScreen from "./pages/main/network/PartnerScreen";
 import GuestScreen from "./pages/main/network/GuestScreen";
+import PurchaseProductScreen from "./pages/main/purchase/PurchaseProductScreen";
+import PurchaseOrderScreen from "./pages/main/purchase/PurchaseOrderScreen";
+import InventoryScreen from "./pages/main/purchase/InventoryScreen";
+import DebitNoteScreen from "./pages/main/purchase/DebitNoteScreen";
 export default function App() {
   const token = useAuthStore((state) => state.token);
   const user = useAuthStore((state) => state.user);
   const [loading, setLoading] = useState(true);
 
   const userRole = user?.role;
-  // console.log(userRole);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -73,6 +76,24 @@ export default function App() {
         {
           path: "/guests",
           element: <GuestScreen />,
+        },
+
+        // Purchase
+        {
+          path: "/purchase-products",
+          element: <PurchaseProductScreen />,
+        },
+        {
+          path: "/purchase-orders",
+          element: <PurchaseOrderScreen />,
+        },
+        {
+          path: "/inventory",
+          element: <InventoryScreen />,
+        },
+        {
+          path: "/debit-notes",
+          element: <DebitNoteScreen />,
         },
       ],
     },
