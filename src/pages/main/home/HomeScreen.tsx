@@ -3,7 +3,7 @@ import RevenueCard from "../../../components/RevenueCard";
 
 export default function HomeScreen() {
   return (
-    <div className="w-full flex justify-center gap-5">
+    <div className="w-full flex justify-center gap-4">
       <RevenueCard
         title="Revenue"
         amount="₹90,000.00"

@@ -70,12 +70,12 @@ export default function LedgerModal({ onClose }: any) {
         <div className="flex justify-between gap-3 mt-6 w-full">
           <button
             onClick={onClose}
-            className="px-5 py-3 rounded-lg border border-gray-300 hover:bg-gray-100 transition w-full cursor-pointer font-semibold"
+            className="px-5 py-3 rounded-lg border border-gray-300 hover:bg-gray-100 transition w-full cursor-pointer font-semibold text-[15px]"
           >
             You got
           </button>
 
-          <button className="px-5 py-3 rounded-lg bg-black text-white hover:bg-gray-800 transition w-full cursor-pointer">
+          <button className="px-5 py-3 rounded-lg bg-black text-white hover:bg-gray-800 transition w-full cursor-pointer font-semibold text-[15px]">
             You Gave
           </button>
         </div>

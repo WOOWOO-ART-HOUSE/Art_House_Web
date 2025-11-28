@@ -87,12 +87,12 @@ export default function CreateCategoryModal({ onClose }: any) {
         <div className="flex justify-between gap-3 mt-4 w-full">
           <button
             onClick={onClose}
-            className="px-5 py-3 rounded-lg border border-gray-300 hover:bg-gray-100 transition w-full cursor-pointer"
+            className="px-5 py-3 rounded-lg border border-gray-300 hover:bg-gray-100 transition w-full cursor-pointer font-semibold text-[15px]"
           >
             Cancel
           </button>
 
-          <button className="px-5 py-3 rounded-lg bg-black text-white hover:bg-gray-800 transition w-full cursor-pointer">
+          <button className="px-5 py-3 rounded-lg bg-black text-white hover:bg-gray-800 transition w-full cursor-pointer font-semibold text-[15px]">
             Submit
           </button>
         </div>

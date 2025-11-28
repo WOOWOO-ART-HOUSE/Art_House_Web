@@ -3,118 +3,116 @@ import {
   MaterialReactTable,
   useMaterialReactTable,
 } from "material-react-table";
-import { Eye, SquarePen, Trash2 } from "lucide-react";
-import CreateVendorModal from "../../../components/modal/CreateVendorModal";
-import LedgerModal from "../../../components/modal/LedgerModal";
+import { CircleMinus, CirclePlus } from "lucide-react";
+import StockInModal from "../../../components/modal/StockInModal";
+import StockOutModal from "../../../components/modal/StockOutModal";
 export default function InventoryScreen() {
-  const [openCreateVendorModal, setOpenCreateVendorModal] = useState(false);
-  const [openLedgerModal, setOpenLedgerModal] = useState(false);
-  const data = useMemo(
-    () => [
-      {
-        id: 1,
-        name: "Rajesh Kumar",
-        company: "Kumar Traders Pvt. Ltd.",
-        category: "Electronics Supplier",
-        mobile: "9876543210",
-        email: "rajesh.kumar@example.com",
-        gstin: "27AAECK1234F1Z5",
-        price: "-",
-        stock: "-",
-      },
-      {
-        id: 2,
-        name: "Aisha Patel",
-        company: "Patel Textiles",
-        category: "Clothing Manufacturer",
-        mobile: "9123456780",
-        email: "aisha.patel@example.com",
-        gstin: "24AABCP1234M1Z9",
-        price: "-",
-        stock: "-",
-      },
-      {
-        id: 3,
-        name: "Mohammed Usman",
-        company: "Usman Footwear Distributors",
-        category: "Footwear Supplier",
-        mobile: "9988776655",
-        email: "usman.footwear@example.com",
-        gstin: "29AACCU5678D1Z2",
-        price: "-",
-        stock: "-",
-      },
-      {
-        id: 4,
-        name: "Simran Kaur",
-        company: "Kaur Home Essentials",
-        category: "Household Goods",
-        mobile: "9876501234",
-        email: "simran.kaur@example.com",
-        gstin: "07AAACK4321L1Z3",
-        price: "-",
-        stock: "-",
-      },
-      {
-        id: 5,
-        name: "Vikram Sharma",
-        company: "Sharma Construction Supplies",
-        category: "Construction Materials",
-        mobile: "9090909090",
-        email: "vikram.sharma@example.com",
-        gstin: "09ABCDF9876A1Z1",
-        price: "-",
-        stock: "-",
-      },
-    ],
-    []
-  );
+  const [showStockInModal, setShowStockInModal] = useState(false);
+  const [showStockOutModal, setShowStockOutModal] = useState(false);
+  const cards = [
+    {
+      title: "Low Stock",
+      value: "1 Items (0 Qty)",
+      bgColor: "#fef8f8",
+    },
+    {
+      title: "Positive Stock",
+      value: "0 Items (0 Qty)",
+      bgColor: "#e6f3ee",
+    },
+    {
+      title: "Stock Value Sales Price",
+      value: "₹ 0",
+      bgColor: "#e5f2ff",
+    },
 
+    {
+      title: "Stock Value With Purchase Price",
+      value: "₹ 0",
+      bgColor: "#fdf0e6",
+    },
+  ];
   const columns = useMemo(
     () => [
       { accessorKey: "id", header: "ID", size: 90 },
-      { accessorKey: "name", header: "Vendor Name" },
-      { accessorKey: "company", header: "Company" },
-      { accessorKey: "category", header: "Category" },
-      { accessorKey: "mobile", header: "Mobile" },
-      { accessorKey: "email", header: "Email" },
-      { accessorKey: "gstin", header: "GSTIN" },
-
-      // 👉 Ledger comes first
-      {
-        header: "Ledger",
-        accessorKey: "ledger",
-        size: 40,
-        Cell: ({ row }) => (
-          <button
-            onClick={() => setOpenLedgerModal(true)}
-            title="View Ledger"
-            className="px-3 py-2 text-sm bg-indigo-100 rounded hover:bg-indigo-200 cursor-pointer"
-          >
-            <Eye color="indigo" size={18} />
-          </button>
-        ),
-      },
+      { accessorKey: "item", header: "Item" },
+      { accessorKey: "qty", header: "Qty" },
+      { accessorKey: "purchase_price", header: "Purchase Price" },
+      { accessorKey: "sale_price", header: "Sale Price" },
+      { accessorKey: "last_updated", header: "Last Updated" },
 
       {
         header: "Actions",
         accessorKey: "actions",
+        size: 200,
         Cell: ({ row }) => (
           <div className="flex items-center gap-2">
             <button
-              onClick={() => console.log("Edit:", row.original)}
-              className="px-3 py-2 text-sm bg-green-100 rounded hover:bg-green-200 cursor-pointer"
+              className="flex items-center px-3 py-1.5 text-sm bg-green-100 rounded hover:bg-green-200 cursor-pointer gap-1"
+              onClick={() => setShowStockInModal(true)}
             >
-              <SquarePen color="green" size={18} />
+              <CirclePlus color="green" size={16} />
+              <span className="text-green-700 text-[12px] font-medium">
+                Stock In
+              </span>
             </button>
+
             <button
-              onClick={() => console.log("Delete:", row.original)}
-              className="px-3 py-2 text-sm bg-red-100 rounded hover:bg-red-200 cursor-pointer"
+              className="flex items-center px-3 py-1.5 text-sm bg-red-100 rounded hover:bg-red-200 cursor-pointer gap-1"
+              onClick={() => setShowStockOutModal(true)}
             >
-              <Trash2 color="red" size={18} />
+              <CircleMinus color="red" size={16} />
+              <span className="text-red-600 text-[12px] font-medium">
+                Stock Out
+              </span>
             </button>
           </div>
         ),
+      },
+    ],
+    []
+  );
+  const data = useMemo(
+    () => [
+      {
+        id: 1,
+        item: "Samsung Charger",
+        qty: 50,
+        purchase_price: "₹250",
+        sale_price: "₹350",
+        last_updated: "2025-01-12",
+      },
+      {
+        id: 2,
+        item: "Leather Wallet",
+        qty: 120,
+        purchase_price: "₹150",
+        sale_price: "₹250",
+        last_updated: "2025-01-10",
+      },
+      {
+        id: 3,
+        item: "Bluetooth Speaker",
+        qty: 35,
+        purchase_price: "₹800",
+        sale_price: "₹1200",
+        last_updated: "2025-01-09",
+      },
+      {
+        id: 4,
+        item: "Sports Shoes",
+        qty: 75,
+        purchase_price: "₹900",
+        sale_price: "₹1500",
+        last_updated: "2025-01-08",
+      },
+      {
+        id: 5,
+        item: "LED Bulb 12W",
+        qty: 300,
+        purchase_price: "₹60",
+        sale_price: "₹110",
+        last_updated: "2025-01-05",
       },
     ],
     []
@@ -139,29 +137,36 @@ export default function InventoryScreen() {
       },
     },
   });
+
   return (
     <div className="p-1">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-xl font-semibold ">Inventory List</h1>
-        <div className="flex gap-3">
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-3">
+        {cards.map((item, index) => (
           <div
-            className="w-[150px] bg-black text-white py-2 px-1 rounded  text-[14px] font-semibold transition text-center border-radius-[50px] cursor-pointer"
-            onClick={() => setOpenCreateVendorModal(true)}
+            key={index}
+            className={`rounded-lg p-4 hover:shadow-sm transition duration-300 cursor-pointer`}
+            style={{ backgroundColor: item.bgColor }}
           >
-            Create New Guest
+            <div className="flex items-center gap-2 text-black">
+              <span className="font-medium">{item.title}</span>
+            </div>
+
+            <div className="mt-2 text-base font-semibold">{item.value}</div>
           </div>
-          {openCreateVendorModal && (
-            <CreateVendorModal
-              onClose={() => setOpenCreateVendorModal(false)}
-            />
-          )}
-        </div>
+        ))}
       </div>
 
       <MaterialReactTable table={table} />
 
-      {openLedgerModal && (
-        <LedgerModal onClose={() => setOpenLedgerModal(false)} />
+      {showStockInModal && (
+        <StockInModal onClose={() => setShowStockInModal(false)} />
+      )}
+
+      {showStockOutModal && (
+        <StockOutModal onClose={() => setShowStockOutModal(false)} />
       )}
     </div>
   );
