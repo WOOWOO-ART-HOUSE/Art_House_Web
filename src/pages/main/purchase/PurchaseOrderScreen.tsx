@@ -145,10 +145,10 @@ export default function PurchaseOrderScreen() {
         <h1 className="text-xl font-semibold ">Purchase Order List</h1>
         <div className="flex gap-3">
           <div
-            className="w-[150px] bg-black text-white py-2 px-1 rounded  text-[14px] font-semibold transition text-center border-radius-[50px] cursor-pointer"
+            className="w-[180px] bg-black text-white py-2 px-1 rounded  text-[14px] font-semibold transition text-center border-radius-[50px] cursor-pointer"
             onClick={() => setOpenCreateVendorModal(true)}
           >
-            Create New Guest
+            Create Purchase Order
           </div>
           {openCreateVendorModal && (
             <CreateVendorModal

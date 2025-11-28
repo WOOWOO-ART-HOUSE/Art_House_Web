@@ -148,7 +148,7 @@ export default function PurchaseProductScreen() {
             className="w-[150px] bg-black text-white py-2 px-1 rounded  text-[14px] font-semibold transition text-center border-radius-[50px] cursor-pointer"
             onClick={() => setOpenCreateVendorModal(true)}
           >
-            Create New Guest
+            Create Purchase
           </div>
           {openCreateVendorModal && (
             <CreateVendorModal

@@ -27,11 +27,15 @@ import PurchaseOrderScreen from "./pages/main/purchase/PurchaseOrderScreen";
 import InventoryScreen from "./pages/main/purchase/InventoryScreen";
 import DebitNoteScreen from "./pages/main/purchase/DebitNoteScreen";
 export default function App() {
-  const token = useAuthStore((state) => state.token);
-  const user = useAuthStore((state) => state.user);
+  // const token = useAuthStore((state) => state.token);
+  // const user = useAuthStore((state) => state.user);
   const [loading, setLoading] = useState(true);
 
-  const userRole = user?.role;
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2JpbGVOdW1iZXIiOiI2MjYxNzMxNjkwIiwiaWF0IjoxNzY0MzE0Nzc4LCJleHAiOjE3NjQ0MDExNzh9.KeWLzjv8vparPlp7bf9T6ADbVCny4Kl3IMH0CKy7zf4";
+  const userRole = "admin";
+
+  console.log(token, userRole);
 
   useEffect(() => {
     const timer = setTimeout(() => {

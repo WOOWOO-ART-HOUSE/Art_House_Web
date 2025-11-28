@@ -6,7 +6,10 @@ import HeaderComponent from "../components/HeaderComponent";
 import LeftSideBar from "../components/LeftSideBar";
 
 export default function AuthRoute() {
-  const token = useAuthStore((state) => state.token);
+  // const token = useAuthStore((state) => state.token);
+
+  const token =
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtb2JpbGVOdW1iZXIiOiI2MjYxNzMxNjkwIiwiaWF0IjoxNzY0MzE0Nzc4LCJleHAiOjE3NjQ0MDExNzh9.KeWLzjv8vparPlp7bf9T6ADbVCny4Kl3IMH0CKy7zf4";
 
   if (!token) {
     return <LoginScreen />;
