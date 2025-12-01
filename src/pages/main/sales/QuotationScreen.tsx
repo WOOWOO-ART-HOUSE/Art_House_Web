@@ -4,11 +4,13 @@ import {
   useMaterialReactTable,
 } from "material-react-table";
 import { Eye, IndianRupee, MoreHorizontal, SendHorizontal } from "lucide-react";
-export default function DebitNoteScreen() {
+
+export default function QuotationScreen() {
   const columns = useMemo(
     () => [
-      { accessorKey: "id", header: "ID", size: 70 },
-      { accessorKey: "account", header: "Account" },
+      { accessorKey: "id", header: "SN", size: 70 },
+      { accessorKey: "amount", header: "Amount" },
+
       {
         accessorKey: "status",
         header: "Status",
@@ -31,34 +33,22 @@ export default function DebitNoteScreen() {
           );
         },
       },
-      { accessorKey: "mode", header: "Mode" },
+
       { accessorKey: "bill", header: "Bill" },
-      { accessorKey: "vendor", header: "Vendor" },
+      { accessorKey: "customer", header: "Customer" },
       { accessorKey: "date", header: "Date" },
 
       {
-        header: "Actions",
         accessorKey: "actions",
-        Cell: ({ row }) => (
+        header: "Action",
+        Cell: () => (
           <div className="flex items-center gap-2">
-            {/* ₹ Button */}
-            <button className="px-2 py-1 rounded bg-yellow-100 hover:bg-yellow-200">
-              <IndianRupee size={16} />
-            </button>
-
-            {/* View */}
             <button className="flex items-center gap-1 px-3 py-1 rounded bg-purple-100 hover:bg-purple-200">
               <Eye size={16} /> <span className="text-sm">View</span>
             </button>
 
-            {/* Send */}
             <button className="flex items-center gap-1 px-3 py-1 rounded bg-green-100 hover:bg-green-200">
               <SendHorizontal size={16} /> <span className="text-sm">Send</span>
-            </button>
-
-            {/* More */}
-            <button className="px-3 py-1 rounded bg-gray-100 hover:bg-gray-200">
-              <MoreHorizontal size={16} />
             </button>
           </div>
         ),
@@ -66,61 +56,72 @@ export default function DebitNoteScreen() {
     ],
     []
   );
+
   const data = useMemo(
     () => [
       {
         id: 1,
-        account: "HDFC Bank",
+        amount: "₹ 1,200",
         status: "Pending",
-        mode: "UPI",
-        bill: "₹1,200",
-        vendor: "Amazon",
-        date: "2025-01-12",
+        bill: "BILL-1023",
+        customer: "Rahul Sharma",
+        date: "2025-01-10",
       },
       {
         id: 2,
-        account: "ICICI",
+        amount: "₹ 950",
         status: "Paid",
-        mode: "Cash",
-        bill: "₹800",
-        vendor: "Reliance Mart",
-        date: "2025-01-10",
+        bill: "BILL-2041",
+        customer: "Neha Verma",
+        date: "2025-01-11",
       },
       {
         id: 3,
-        account: "SBI",
-        status: "Failed",
-        mode: "Card",
-        bill: "₹2,500",
-        vendor: "Flipkart",
-        date: "2025-01-08",
-      },
-      {
-        id: 4,
-        account: "HDFC Bank",
-        status: "Pending",
-        mode: "UPI",
-        bill: "₹1,200",
-        vendor: "Amazon",
+        amount: "₹ 2,500",
+        status: "Cancelled",
+        bill: "BILL-3344",
+        customer: "Amit Kumar",
         date: "2025-01-12",
       },
       {
+        id: 4,
+        amount: "₹ 780",
+        status: "Pending",
+        bill: "BILL-5567",
+        customer: "Priya Singh",
+        date: "2025-01-13",
+      },
+      {
         id: 5,
-        account: "ICICI",
+        amount: "₹ 3,100",
         status: "Paid",
-        mode: "Cash",
-        bill: "₹800",
-        vendor: "Reliance Mart",
-        date: "2025-01-10",
+        bill: "BILL-8899",
+        customer: "Saurabh Patil",
+        date: "2025-01-14",
       },
       {
         id: 6,
-        account: "SBI",
-        status: "Failed",
-        mode: "Card",
-        bill: "₹2,500",
-        vendor: "Flipkart",
-        date: "2025-01-08",
+        amount: "₹ 1,850",
+        status: "Cancelled",
+        bill: "BILL-6732",
+        customer: "Manoj Yadav",
+        date: "2025-01-15",
+      },
+      {
+        id: 7,
+        amount: "₹ 420",
+        status: "Paid",
+        bill: "BILL-2921",
+        customer: "Anita Desai",
+        date: "2025-01-16",
+      },
+      {
+        id: 8,
+        amount: "₹ 5,200",
+        status: "Pending",
+        bill: "BILL-4820",
+        customer: "Rakesh Rao",
+        date: "2025-01-17",
       },
     ],
     []
@@ -148,16 +149,13 @@ export default function DebitNoteScreen() {
   return (
     <div className="p-1">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-xl font-semibold ">
-          Purchase Returns / Debit Notes
-        </h1>
+        <h1 className="text-xl font-semibold ">Quotations</h1>
         <div className="flex gap-3">
-          <div className="w-[260px] bg-black text-white py-2 px-1 rounded  text-[14px] font-semibold transition text-center border-radius-[50px] cursor-pointer">
-            Create Purchase Return / Debit Note
+          <div className="w-[150px] bg-black text-white py-2 px-1 rounded  text-[14px] font-semibold transition text-center border-radius-[50px] cursor-pointer">
+            Create Quotations
           </div>
         </div>
       </div>
-
       <MaterialReactTable table={table} />
     </div>
   );

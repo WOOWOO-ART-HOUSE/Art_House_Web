@@ -86,27 +86,54 @@ export default function LeftSideBar() {
 
           {openMenu === "sales" && !collapsed && (
             <div className="ml-10 mt-1 space-y-2 cursor-pointer">
-              {[
-                "all",
-                "pos",
-                "invoice",
-                "membership",
-                "payments",
-                "quotations",
-                "creditnotes",
-              ].map((item) => (
-                <p
-                  key={item}
-                  className={`cursor-pointer hover:text-black ${
-                    activeSubmenu === item ? "font-semibold" : ""
-                  }`}
-                  onClick={() =>
-                    handleSubmenuClick("sales", item, `/sales/${item}`)
-                  }
-                >
-                  {item.charAt(0).toUpperCase() + item.slice(1)}
-                </p>
-              ))}
+              <p
+                className={`cursor-pointer hover:text-black ${
+                  activeSubmenu === "pos" ? "font-semibold" : ""
+                }`}
+                onClick={() => handleSubmenuClick("sales", "pos", "/pos")}
+              >
+                Pos
+              </p>
+              <p
+                className={`cursor-pointer hover:text-black ${
+                  activeSubmenu === "invoices" ? "font-semibold" : ""
+                }`}
+                onClick={() =>
+                  handleSubmenuClick("sales", "invoices", "/invoices")
+                }
+              >
+                Invoices
+              </p>
+              <p
+                className={`cursor-pointer hover:text-black ${
+                  activeSubmenu === "payments" ? "font-semibold" : ""
+                }`}
+                onClick={() =>
+                  handleSubmenuClick("sales", "payments", "/payments")
+                }
+              >
+                Payments
+              </p>
+              <p
+                className={`cursor-pointer hover:text-black ${
+                  activeSubmenu === "quotations" ? "font-semibold" : ""
+                }`}
+                onClick={() =>
+                  handleSubmenuClick("sales", "quotations", "/quotations")
+                }
+              >
+                Quotations
+              </p>
+              <p
+                className={`cursor-pointer hover:text-black ${
+                  activeSubmenu === "creditnotes" ? "font-semibold" : ""
+                }`}
+                onClick={() =>
+                  handleSubmenuClick("sales", "creditnotes", "/creditnotes")
+                }
+              >
+                Credit Notes
+              </p>
             </div>
           )}
         </div>

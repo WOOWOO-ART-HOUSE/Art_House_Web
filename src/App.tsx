@@ -8,7 +8,7 @@ import {
 import NotfoundScreen from "./pages/common/NotfoundScreen";
 import LoginScreen from "./pages/auth/LoginScreen";
 import OtpScreen from "./pages/auth/OtpScreen";
-import { useAuthStore } from "./store/authStore";
+// import { useAuthStore } from "./store/authStore";
 import AuthRoute from "./routes/AuthRoute";
 import FullPageLoader from "./components/FullPageLoader";
 import HomeScreen from "./pages/main/home/HomeScreen";
@@ -26,6 +26,11 @@ import PurchaseProductScreen from "./pages/main/purchase/PurchaseProductScreen";
 import PurchaseOrderScreen from "./pages/main/purchase/PurchaseOrderScreen";
 import InventoryScreen from "./pages/main/purchase/InventoryScreen";
 import DebitNoteScreen from "./pages/main/purchase/DebitNoteScreen";
+import PosScreen from "./pages/main/sales/PosScreen";
+import InvoiceScreen from "./pages/main/sales/InvoiceScreen";
+import PaymentScreen from "./pages/main/sales/PaymentScreen";
+import QuotationScreen from "./pages/main/sales/QuotationScreen";
+import CreditNoteScreen from "./pages/main/sales/CreditNoteScreen";
 export default function App() {
   // const token = useAuthStore((state) => state.token);
   // const user = useAuthStore((state) => state.user);
@@ -98,6 +103,28 @@ export default function App() {
         {
           path: "/debit-notes",
           element: <DebitNoteScreen />,
+        },
+
+        // Sales
+        {
+          path: "/pos",
+          element: <PosScreen />,
+        },
+        {
+          path: "/invoices",
+          element: <InvoiceScreen />,
+        },
+        {
+          path: "/payments",
+          element: <PaymentScreen />,
+        },
+        {
+          path: "/quotations",
+          element: <QuotationScreen />,
+        },
+        {
+          path: "/creditnotes",
+          element: <CreditNoteScreen />,
         },
       ],
     },

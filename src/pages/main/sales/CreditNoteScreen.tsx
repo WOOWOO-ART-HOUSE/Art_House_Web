@@ -4,7 +4,7 @@ import {
   useMaterialReactTable,
 } from "material-react-table";
 import { Eye, IndianRupee, MoreHorizontal, SendHorizontal } from "lucide-react";
-export default function DebitNoteScreen() {
+export default function CreditNoteScreen() {
   const columns = useMemo(
     () => [
       { accessorKey: "id", header: "ID", size: 70 },
@@ -148,16 +148,13 @@ export default function DebitNoteScreen() {
   return (
     <div className="p-1">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-xl font-semibold ">
-          Purchase Returns / Debit Notes
-        </h1>
+        <h1 className="text-xl font-semibold ">Sales Returns / Credit Notes</h1>
         <div className="flex gap-3">
           <div className="w-[260px] bg-black text-white py-2 px-1 rounded  text-[14px] font-semibold transition text-center border-radius-[50px] cursor-pointer">
-            Create Purchase Return / Debit Note
+            Create Sales Return / Credit Note
           </div>
         </div>
       </div>
-
       <MaterialReactTable table={table} />
     </div>
   );

@@ -36,7 +36,7 @@ export default function HeaderComponent() {
           <Search size={18} />
           <input
             type="text"
-            placeholder="Ask SwipeAI"
+            placeholder="Search for products, brands and more"
             className="w-full bg-transparent outline-none px-2 text-sm"
           />
           <span className="text-xs text-gray-500 whitespace-nowrap">
