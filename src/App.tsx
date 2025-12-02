@@ -31,6 +31,8 @@ import InvoiceScreen from "./pages/main/sales/InvoiceScreen";
 import PaymentScreen from "./pages/main/sales/PaymentScreen";
 import QuotationScreen from "./pages/main/sales/QuotationScreen";
 import CreditNoteScreen from "./pages/main/sales/CreditNoteScreen";
+import CreatePosScreen from "./pages/main/sales/CreatePosScreen";
+import CreateInvoiceScreen from "./pages/main/sales/CreateInvoiceScreen";
 export default function App() {
   // const token = useAuthStore((state) => state.token);
   // const user = useAuthStore((state) => state.user);
@@ -125,6 +127,16 @@ export default function App() {
         {
           path: "/creditnotes",
           element: <CreditNoteScreen />,
+        },
+        // Form
+
+        {
+          path: "/create-pos",
+          element: <CreatePosScreen />,
+        },
+        {
+          path: "/create-invoice",
+          element: <CreateInvoiceScreen />,
         },
       ],
     },
