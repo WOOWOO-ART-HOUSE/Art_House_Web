@@ -4,20 +4,12 @@ import {
   useMaterialReactTable,
 } from "material-react-table";
 import { Link } from "react-router-dom";
-import {
-  ArrowDownCircle,
-  ArrowUpCircle,
-  Boxes,
-  Eye,
-  LayoutList,
-  ShoppingBasket,
-  SquarePen,
-  Trash2,
-} from "lucide-react";
+import { Eye, SquarePen, Trash2 } from "lucide-react";
 import CreateVendorModal from "../../../components/modal/CreateVendorModal";
 import LedgerModal from "../../../components/modal/LedgerModal";
+import CreatePartnerModal from "../../../components/modal/CreatePartnerModal";
 export default function PartnerScreen() {
-  const [openCreateVendorModal, setOpenCreateVendorModal] = useState(false);
+  const [openCreatePartnerModal, setOpenCreatePartnerModal] = useState(false);
   const [openLedgerModal, setOpenLedgerModal] = useState(false);
   const data = useMemo(
     () => [
@@ -25,56 +17,46 @@ export default function PartnerScreen() {
         id: 1,
         name: "Rajesh Kumar",
         company: "Kumar Traders Pvt. Ltd.",
-        category: "Electronics Supplier",
+        category: "Art Supplies Distributor",
         mobile: "9876543210",
         email: "rajesh.kumar@example.com",
         gstin: "27AAECK1234F1Z5",
-        price: "-",
-        stock: "-",
       },
       {
         id: 2,
         name: "Aisha Patel",
         company: "Patel Textiles",
-        category: "Clothing Manufacturer",
+        category: "Plain Textiles Supplier",
         mobile: "9123456780",
         email: "aisha.patel@example.com",
         gstin: "24AABCP1234M1Z9",
-        price: "-",
-        stock: "-",
       },
       {
         id: 3,
         name: "Mohammed Usman",
         company: "Usman Footwear Distributors",
-        category: "Footwear Supplier",
+        category: "Sketch Pens Supplier",
         mobile: "9988776655",
         email: "usman.footwear@example.com",
         gstin: "29AACCU5678D1Z2",
-        price: "-",
-        stock: "-",
       },
       {
         id: 4,
         name: "Simran Kaur",
         company: "Kaur Home Essentials",
-        category: "Household Goods",
+        category: "Home Decor Supplier",
         mobile: "9876501234",
         email: "simran.kaur@example.com",
         gstin: "07AAACK4321L1Z3",
-        price: "-",
-        stock: "-",
       },
       {
         id: 5,
         name: "Vikram Sharma",
         company: "Sharma Construction Supplies",
-        category: "Construction Materials",
+        category: "Design Materials Supplier",
         mobile: "9090909090",
         email: "vikram.sharma@example.com",
         gstin: "09ABCDF9876A1Z1",
-        price: "-",
-        stock: "-",
       },
     ],
     []
@@ -83,14 +65,13 @@ export default function PartnerScreen() {
   const columns = useMemo(
     () => [
       { accessorKey: "id", header: "ID", size: 90 },
-      { accessorKey: "name", header: "Vendor Name" },
+      { accessorKey: "name", header: "Partner Name" },
       { accessorKey: "company", header: "Company" },
       { accessorKey: "category", header: "Category" },
       { accessorKey: "mobile", header: "Mobile" },
       { accessorKey: "email", header: "Email" },
       { accessorKey: "gstin", header: "GSTIN" },
 
-      // 👉 Ledger comes first
       {
         header: "Ledger",
         accessorKey: "ledger",
@@ -155,14 +136,14 @@ export default function PartnerScreen() {
         <h1 className="text-xl font-semibold ">Partners List</h1>
         <div className="flex gap-3">
           <div
-            className="w-[150px] bg-black text-white py-2 px-1 rounded  text-[14px] font-semibold transition text-center border-radius-[50px] cursor-pointer"
-            onClick={() => setOpenCreateVendorModal(true)}
+            className="w-[170px] bg-black text-white py-2 px-1 rounded  text-[14px] font-semibold transition text-center border-radius-[50px] cursor-pointer"
+            onClick={() => setOpenCreatePartnerModal(true)}
           >
             Create New Partner
           </div>
-          {openCreateVendorModal && (
-            <CreateVendorModal
-              onClose={() => setOpenCreateVendorModal(false)}
+          {openCreatePartnerModal && (
+            <CreatePartnerModal
+              onClose={() => setOpenCreatePartnerModal(false)}
             />
           )}
         </div>

@@ -3,125 +3,111 @@ import {
   MaterialReactTable,
   useMaterialReactTable,
 } from "material-react-table";
-import { Link } from "react-router-dom";
-import {
-  ArrowDownCircle,
-  ArrowUpCircle,
-  Boxes,
-  Eye,
-  LayoutList,
-  ShoppingBasket,
-  SquarePen,
-  Trash2,
-} from "lucide-react";
-import CreateVendorModal from "../../../components/modal/CreateVendorModal";
+import { Eye, SquarePen, Trash2 } from "lucide-react";
 import LedgerModal from "../../../components/modal/LedgerModal";
+import CreateCustomerModal from "../../../components/modal/CreateCustomerModal";
 export default function CustomerScreen() {
-  const [openCreateVendorModal, setOpenCreateVendorModal] = useState(false);
+  const [openCreateCustomerModal, setOpenCreateCustomerModal] = useState(false);
   const [openLedgerModal, setOpenLedgerModal] = useState(false);
   const data = useMemo(
     () => [
       {
         id: 1,
-        name: "Rajesh Kumar",
-        company: "Kumar Traders Pvt. Ltd.",
-        category: "Electronics Supplier",
+        name: "Ram",
         mobile: "9876543210",
-        email: "rajesh.kumar@example.com",
-        gstin: "27AAECK1234F1Z5",
-        price: "-",
-        stock: "-",
+        email: "ram123@gmail.com",
+        address: "Nehru Nagar, Bhilai",
+        city: "Bhilai",
+        state: "Chhattisgarh",
+        pincode: "491107",
       },
       {
         id: 2,
-        name: "Aisha Patel",
-        company: "Patel Textiles",
-        category: "Clothing Manufacturer",
-        mobile: "9123456780",
-        email: "aisha.patel@example.com",
-        gstin: "24AABCP1234M1Z9",
-        price: "-",
-        stock: "-",
+        name: "Mohan",
+        mobile: "9876543210",
+        email: "mohan123@gmail.com",
+        address: "Nehru Nagar, Bhilai",
+        city: "Bhilai",
+        state: "Chhattisgarh",
+        pincode: "491107",
       },
       {
         id: 3,
-        name: "Mohammed Usman",
-        company: "Usman Footwear Distributors",
-        category: "Footwear Supplier",
-        mobile: "9988776655",
-        email: "usman.footwear@example.com",
-        gstin: "29AACCU5678D1Z2",
-        price: "-",
-        stock: "-",
+        name: "Sohan",
+        mobile: "9876543210",
+        email: "sohan123@gmail.com",
+        address: "Station Road, Durg",
+        city: "Durg",
+        state: "Chhattisgarh",
+        pincode: "491107",
       },
       {
         id: 4,
-        name: "Simran Kaur",
-        company: "Kaur Home Essentials",
-        category: "Household Goods",
-        mobile: "9876501234",
-        email: "simran.kaur@example.com",
-        gstin: "07AAACK4321L1Z3",
-        price: "-",
-        stock: "-",
+        name: "Chintu",
+        mobile: "9876543210",
+        email: "chintu123@gmail.com",
+        address: "Station Road, Durg",
+        city: "Durg",
+        state: "Chhattisgarh",
+        pincode: "491107",
       },
       {
         id: 5,
-        name: "Vikram Sharma",
-        company: "Sharma Construction Supplies",
-        category: "Construction Materials",
-        mobile: "9090909090",
-        email: "vikram.sharma@example.com",
-        gstin: "09ABCDF9876A1Z1",
-        price: "-",
-        stock: "-",
+        name: "Mintu",
+        mobile: "9876543210",
+        email: "mintu123@gmail.com",
+        address: "Civic Center, Bhilai",
+        city: "Bhilai",
+        state: "Chhattisgarh",
+        pincode: "491107",
       },
     ],
     []
   );
-
   const columns = useMemo(
     () => [
-      { accessorKey: "id", header: "ID", size: 90 },
-      { accessorKey: "name", header: "Vendor Name" },
-      { accessorKey: "company", header: "Company" },
-      { accessorKey: "category", header: "Category" },
-      { accessorKey: "mobile", header: "Mobile" },
+      { accessorKey: "id", header: "ID", size: 50 },
+      { accessorKey: "name", header: "Customer Name" },
+      { accessorKey: "mobile", header: "Mobile", size: 60 },
       { accessorKey: "email", header: "Email" },
-      { accessorKey: "gstin", header: "GSTIN" },
-
-      // 👉 Ledger comes first
+      { accessorKey: "address", header: "Address" },
+      { accessorKey: "city", header: "City", size: 60 },
+      { accessorKey: "state", header: "State", size: 60 },
+      { accessorKey: "pincode", header: "Pincode", size: 60 },
       {
         header: "Ledger",
         accessorKey: "ledger",
-        size: 40,
+        size: 30,
         Cell: ({ row }) => (
           <button
             onClick={() => setOpenLedgerModal(true)}
             title="View Ledger"
-            className="px-3 py-2 text-sm bg-indigo-100 rounded hover:bg-indigo-200 cursor-pointer"
+            className="px-3 py-2 bg-indigo-100 rounded hover:bg-indigo-200 cursor-pointer"
           >
-            <Eye color="indigo" size={18} />
+            <Eye size={18} className="text-indigo-600" />
           </button>
         ),
       },
-
       {
         header: "Actions",
         accessorKey: "actions",
+        size: 60,
         Cell: ({ row }) => (
           <div className="flex items-center gap-2">
+            {/* Edit */}
             <button
               onClick={() => console.log("Edit:", row.original)}
-              className="px-3 py-2 text-sm bg-green-100 rounded hover:bg-green-200 cursor-pointer"
+              className="px-3 py-2 bg-green-100 rounded hover:bg-green-200 cursor-pointer"
             >
-              <SquarePen color="green" size={18} />
+              <SquarePen size={18} className="text-green-600" />
             </button>
+
+            {/* Delete */}
             <button
               onClick={() => console.log("Delete:", row.original)}
-              className="px-3 py-2 text-sm bg-red-100 rounded hover:bg-red-200 cursor-pointer"
+              className="px-3 py-2 bg-red-100 rounded hover:bg-red-200 cursor-pointer"
             >
-              <Trash2 color="red" size={18} />
+              <Trash2 size={18} className="text-red-600" />
             </button>
           </div>
         ),
@@ -156,13 +142,13 @@ export default function CustomerScreen() {
         <div className="flex gap-3">
           <div
             className="w-[170px] bg-black text-white py-2 px-1 rounded  text-[14px] font-semibold transition text-center border-radius-[50px] cursor-pointer"
-            onClick={() => setOpenCreateVendorModal(true)}
+            onClick={() => setOpenCreateCustomerModal(true)}
           >
             Create New Customer
           </div>
-          {openCreateVendorModal && (
-            <CreateVendorModal
-              onClose={() => setOpenCreateVendorModal(false)}
+          {openCreateCustomerModal && (
+            <CreateCustomerModal
+              onClose={() => setOpenCreateCustomerModal(false)}
             />
           )}
         </div>

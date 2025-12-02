@@ -16,11 +16,13 @@ import {
 export default function MembershipScreen() {
   const columns = useMemo(
     () => [
-      { accessorKey: "id", header: "ID" },
-      { accessorKey: "name", header: "Product Name" },
-      { accessorKey: "category", header: "Category" },
+      { accessorKey: "id", header: "ID", size: 20 },
+      { accessorKey: "membership_name", header: "Membership Name", size: 80 },
+      { accessorKey: "description", header: "Description", size: 300 },
       { accessorKey: "price", header: "Price" },
-      { accessorKey: "stock", header: "Stock" },
+      { accessorKey: "validity", header: "Validity" },
+      { accessorKey: "plan_images", header: "Plan Images" },
+
       {
         header: "Actions",
         accessorKey: "actions",
@@ -52,26 +54,36 @@ export default function MembershipScreen() {
     () => [
       {
         id: 1,
-        name: "Laptop",
-        category: "Electronics",
-        price: "$1200",
-        stock: 15,
+        membership_name: "Basic Plan",
+        description: "Access to essential features with limited support.",
+        price: "299",
+        validity: "30 Days",
+        plan_images: 3,
       },
-      { id: 2, name: "T-Shirt", category: "Clothing", price: "$25", stock: 50 },
-      { id: 3, name: "Shoes", category: "Footwear", price: "$80", stock: 30 },
+      {
+        id: 2,
+        membership_name: "Standard Plan",
+        description: "Includes all basic features plus priority support.",
+        price: "599",
+        validity: "90 Days",
+        plan_images: 5,
+      },
+      {
+        id: 3,
+        membership_name: "Premium Plan",
+        description:
+          "Full access to all premium features with 24/7 customer support.",
+        price: "999",
+        validity: "180 Days",
+        plan_images: 8,
+      },
       {
         id: 4,
-        name: "Smartphone",
-        category: "Electronics",
-        price: "$900",
-        stock: 20,
-      },
-      {
-        id: 5,
-        name: "Watch",
-        category: "Accessories",
-        price: "$150",
-        stock: 40,
+        membership_name: "Ultimate Plan",
+        description: "Unlimited access, exclusive deals, and premium support.",
+        price: "1499",
+        validity: "365 Days",
+        plan_images: 12,
       },
     ],
     []

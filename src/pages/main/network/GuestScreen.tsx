@@ -4,77 +4,62 @@ import {
   useMaterialReactTable,
 } from "material-react-table";
 import { Link } from "react-router-dom";
-import {
-  ArrowDownCircle,
-  ArrowUpCircle,
-  Boxes,
-  Eye,
-  LayoutList,
-  ShoppingBasket,
-  SquarePen,
-  Trash2,
-} from "lucide-react";
-import CreateVendorModal from "../../../components/modal/CreateVendorModal";
+import { Eye, SquarePen, Trash2 } from "lucide-react";
 import LedgerModal from "../../../components/modal/LedgerModal";
+import CreateGuestModal from "../../../components/modal/CreateGuestModal";
 export default function GuestScreen() {
-  const [openCreateVendorModal, setOpenCreateVendorModal] = useState(false);
+  const [openCreateGuestModal, setOpenCreateGuestModal] = useState(false);
   const [openLedgerModal, setOpenLedgerModal] = useState(false);
   const data = useMemo(
     () => [
       {
         id: 1,
         name: "Rajesh Kumar",
-        company: "Kumar Traders Pvt. Ltd.",
-        category: "Electronics Supplier",
         mobile: "9876543210",
         email: "rajesh.kumar@example.com",
-        gstin: "27AAECK1234F1Z5",
-        price: "-",
-        stock: "-",
+        address: "Bhilai, Chhattisgarh",
       },
       {
         id: 2,
-        name: "Aisha Patel",
-        company: "Patel Textiles",
-        category: "Clothing Manufacturer",
+        name: "Anita Sharma",
         mobile: "9123456780",
-        email: "aisha.patel@example.com",
-        gstin: "24AABCP1234M1Z9",
-        price: "-",
-        stock: "-",
+        email: "anita.sharma@example.com",
+        address: "Durg, Chhattisgarh",
       },
       {
         id: 3,
-        name: "Mohammed Usman",
-        company: "Usman Footwear Distributors",
-        category: "Footwear Supplier",
+        name: "Vikram Singh",
         mobile: "9988776655",
-        email: "usman.footwear@example.com",
-        gstin: "29AACCU5678D1Z2",
-        price: "-",
-        stock: "-",
+        email: "vikram.singh@example.com",
+        address: "Bhilai, Chhattisgarh",
       },
       {
         id: 4,
-        name: "Simran Kaur",
-        company: "Kaur Home Essentials",
-        category: "Household Goods",
-        mobile: "9876501234",
-        email: "simran.kaur@example.com",
-        gstin: "07AAACK4321L1Z3",
-        price: "-",
-        stock: "-",
+        name: "Sunita Patel",
+        mobile: "9876543210",
+        email: "sunita.patel@example.com",
+        address: "Bhilai, Chhattisgarh",
       },
       {
         id: 5,
-        name: "Vikram Sharma",
-        company: "Sharma Construction Supplies",
-        category: "Construction Materials",
-        mobile: "9090909090",
-        email: "vikram.sharma@example.com",
-        gstin: "09ABCDF9876A1Z1",
-        price: "-",
-        stock: "-",
+        name: "Ram Kumar",
+        mobile: "9876543210",
+        email: "ram.kumar@example.com",
+        address: "Durg, Chhattisgarh",
+      },
+      {
+        id: 6,
+        name: "Sita Devi",
+        mobile: "9876543210",
+        email: "sita.devi@example.com",
+        address: "Bhilai, Chhattisgarh",
+      },
+      {
+        id: 7,
+        name: "Sunil Joshi",
+        mobile: "9876543210",
+        email: "sunil.joshi@example.com",
+        address: "Durg, Chhattisgarh",
       },
     ],
     []
@@ -83,14 +68,10 @@ export default function GuestScreen() {
   const columns = useMemo(
     () => [
       { accessorKey: "id", header: "ID", size: 90 },
-      { accessorKey: "name", header: "Vendor Name" },
-      { accessorKey: "company", header: "Company" },
-      { accessorKey: "category", header: "Category" },
+      { accessorKey: "name", header: "Guest Name" },
       { accessorKey: "mobile", header: "Mobile" },
       { accessorKey: "email", header: "Email" },
-      { accessorKey: "gstin", header: "GSTIN" },
-
-      // 👉 Ledger comes first
+      { accessorKey: "address", header: "Address" },
       {
         header: "Ledger",
         accessorKey: "ledger",
@@ -156,14 +137,12 @@ export default function GuestScreen() {
         <div className="flex gap-3">
           <div
             className="w-[150px] bg-black text-white py-2 px-1 rounded  text-[14px] font-semibold transition text-center border-radius-[50px] cursor-pointer"
-            onClick={() => setOpenCreateVendorModal(true)}
+            onClick={() => setOpenCreateGuestModal(true)}
           >
             Create New Guest
           </div>
-          {openCreateVendorModal && (
-            <CreateVendorModal
-              onClose={() => setOpenCreateVendorModal(false)}
-            />
+          {openCreateGuestModal && (
+            <CreateGuestModal onClose={() => setOpenCreateGuestModal(false)} />
           )}
         </div>
       </div>
